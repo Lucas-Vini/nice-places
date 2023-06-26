@@ -1,0 +1,32 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+	<a href="/" class="navbar-brand">Search for places</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	{% if places_inserted or places_already_in_db %}
+		{% if places_inserted %}
+			<h1>Os seguintes lugares foram adicionados ao banco de dados:</h1>
+			{% for place in places_inserted %}
+				<h4>{{ place[0] }} | {{ place [1] }}</h4>
+			{% endfor %}
+		{% endif %}
+
+		{% if places_already_in_db %}
+			<h1>Os seguintes lugares já estavam presentes no banco de dados:</h1>
+			{% for place in places_already_in_db %}
+				<h4>{{ place[0] }} | {{ place [1] }}</h4>
+			{% endfor %}
+		{% endif %}
+	{% else %}
+		<h1>Nenhum lugar foi adicionado porque nenhum lugar foi selecionado</h1>
+	{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+	<a href="/" class="navbar-brand">Search for places</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<form action="/add-places" method="post">
+		{% for place in places %}
+			<div>
+				<input type="checkbox" name="{{ place['place_id'] }}" id="{{ place['place_id'] }}" value="['{{ place['name'] }}', '{{ place['formatted_address'] }}', {{ place['types'] }}]">
+				<label for="place['place_id']">{{place['name'] + ' | ' + place['formatted_address']}}</label>
+			</div>
+		{% endfor %}
+		<button type="submit" value="Submit" class='btn btn-danger'>Add places</button>
+	</form>
+</div>
+{% endblock %}
